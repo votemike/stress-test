@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/stress-test/static/css/main.ee009875.chunk.css",
+    "main.js": "/stress-test/static/js/main.46c7bf55.chunk.js",
+    "main.js.map": "/stress-test/static/js/main.46c7bf55.chunk.js.map",
+    "runtime-main.js": "/stress-test/static/js/runtime-main.ca316bac.js",
+    "runtime-main.js.map": "/stress-test/static/js/runtime-main.ca316bac.js.map",
+    "static/js/2.3dcd7bd2.chunk.js": "/stress-test/static/js/2.3dcd7bd2.chunk.js",
+    "static/js/2.3dcd7bd2.chunk.js.map": "/stress-test/static/js/2.3dcd7bd2.chunk.js.map",
+    "index.html": "/stress-test/index.html",
+    "precache-manifest.3332da3d3e7b363461e3ae8b70e570e8.js": "/stress-test/precache-manifest.3332da3d3e7b363461e3ae8b70e570e8.js",
+    "service-worker.js": "/stress-test/service-worker.js",
+    "static/css/main.ee009875.chunk.css.map": "/stress-test/static/css/main.ee009875.chunk.css.map",
+    "static/media/logo.svg": "/stress-test/static/media/logo.25bf045c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca316bac.js",
+    "static/js/2.3dcd7bd2.chunk.js",
+    "static/css/main.ee009875.chunk.css",
+    "static/js/main.46c7bf55.chunk.js"
+  ]
+}
