@@ -22,12 +22,14 @@ class AddProperty extends React.Component {
   }
 
   handleSubmit(event) {
+    // @TODO validate form
     event.preventDefault();
     this.props.addPropertyHandler(this.state);
     this.setState(this.getInitialFormState());
   }
 
   render() {
+    const monthsLeftInput = this.state.interestOnly ? null : <div><input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Months left" min="0" required/></div>;
     return (
       <React.Fragment>
         <h2>Add a Property</h2>
@@ -49,9 +51,7 @@ class AddProperty extends React.Component {
             <div>
               <input name="baseRate" value={this.state.baseRate} onChange={this.handleInputChange} type="number" placeholder="Base rate" step="any" required/>
             </div>
-            <div>{/* if it's not interest only*/}
-              <input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Months left" min="0" required/>
-            </div>
+            {monthsLeftInput}
             <div>
               <input name="teaserRate" value={this.state.teaserRate} onChange={this.handleInputChange} type="number" placeholder="Teaser rate" step="any"/>
             </div>
