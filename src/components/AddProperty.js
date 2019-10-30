@@ -1,6 +1,5 @@
 import React from 'react';
 
-// @TODO deal with the placeholders
 class AddProperty extends React.Component {
   constructor(props) {
     super(props);
