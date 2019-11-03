@@ -21,16 +21,21 @@ function App() {
   };
 
   return (
-    <div className="stress-test">
-      <header>
-        <h1>Mortgage Stress Test</h1>
-        <p>This stress test is provided as a rough guide only. You should not base any decisions solely on it.</p>
-        <p>It is currently a work in progress.</p>
-      </header>
-      <PropertySummaries properties={properties}/>
-      <FullSummary properties={properties}/>
-      <AddProperty addPropertyHandler={addPropertyHandler}/>
-    </div>
+    <>
+      <div className="stress-test">
+        <header>
+          <h1>Mortgage Stress Test</h1>
+          <p>This stress test is provided as a rough guide only. You should not base any decisions solely on it.</p>
+          <p>It is currently a work in progress.</p>
+        </header>
+        <PropertySummaries properties={properties}/>
+        <FullSummary properties={properties}/>
+        <AddProperty addPropertyHandler={addPropertyHandler}/>
+      </div>
+      <footer>
+        <p>Created by <a href="https://www.votemike.co.uk">Michael Gwynne</a></p>
+      </footer>
+    </>
   );
 }
 

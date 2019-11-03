@@ -28,42 +28,43 @@ class AddProperty extends React.Component {
   }
 
   render() {
-    const monthsLeftInput = this.state.interestOnly ? null : <div><input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Months left" min="0" required/></div>;
+    const monthsLeftInput = this.state.interestOnly ? null : <div className="field"><input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Months left" min="0" required/></div>;
     return (
       <React.Fragment>
         <h2>Add a Property</h2>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <div>
+          <div className="row">
+            <div className="field">
               <input name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Property Name" required/>
             </div>
-            <div>
+            <div className="field">
               <label htmlFor="interestOnly">Interest only
-                <input name="interestOnly" value={this.state.interestOnly} onChange={this.handleInputChange} type="checkbox"/>
+                <input name="interestOnly" checked={this.state.interestOnly} onChange={this.handleInputChange} type="checkbox"/>
               </label>
             </div>
           </div>
-          <div>
-            <div>
+          <div className="row">
+            <div className="field">
               <input name="mortgage" value={this.state.mortgage} onChange={this.handleInputChange} type="number" placeholder="Outstanding mortgage" step="any" min="0" required/>
             </div>
-            <div>
+            <div className="field">
               <input name="baseRate" value={this.state.baseRate} onChange={this.handleInputChange} type="number" placeholder="Base rate" step="any" required/>
             </div>
             {monthsLeftInput}
-            <div>
+            <div className="field">
               <input name="teaserRate" value={this.state.teaserRate} onChange={this.handleInputChange} type="number" placeholder="Teaser rate" step="any"/>
             </div>
           </div>
-          <div>
-            <div>
+          <div className="row">
+            <div className="field">
               <input name="income" value={this.state.income} onChange={this.handleInputChange} placeholder="Income" id="income" required/>
-              <label htmlFor="income">Monthly Net Income after fees, maintainence and taxes but before mortgage
-                payments</label>
+            </div>
+            <div className="income-label">
+              <label htmlFor="income">(Monthly Net Income after fees, maintenance and taxes but before mortgage payments)</label>
             </div>
           </div>
-          <div>
-            <div>
+          <div className="row">
+            <div className="field">
               <input type="submit" value="Add Property"/>
             </div>
           </div>
