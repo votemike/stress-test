@@ -1,22 +1,98 @@
-.App {
+$footerHeight: 54px;
+
+html {
+  position: relative;
+}
+
+body {
+  padding-bottom: $footerHeight;
+}
+
+.stress-test {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+
+  header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #369;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 2.5em;
+  }
+}
+
+form {
+  margin: 10px 0;
+  .field {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 0;
+    width: 100%;
+
+    input:not([type=checkbox]) {
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-sizing: border-box;
+      color: #555;
+      font-size: 14px;
+      height: 34px;
+      line-height: 1.42857;
+      padding: 6px 12px;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      width: 100%;
+
+      ::placeholder {
+        color: #999;
+        opacity: 1
+      }
+    }
+
+    input:required {
+      &:valid {
+        border-left: 5px solid #42a948;
+      }
+
+      &:not(:valid) {
+        border-left: 5px solid #a94442;
+      }
+    }
+  }
+
+  .income-label {
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: 992px) {
+    .field {
+      padding: 0 30px 0 0;
+      width: calc(100% / 6);
+    }
+
+    .row {
+      margin-top: 10px;
+    }
+  }
+}
+
+footer {
+  background-color: #f2f2f2;
+  bottom: 0;
+  height: $footerHeight;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+  padding-top: 4px;
+  position: absolute;
+  width: 100%;
 }
