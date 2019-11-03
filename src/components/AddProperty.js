@@ -21,7 +21,6 @@ class AddProperty extends React.Component {
   }
 
   handleSubmit(event) {
-    // @TODO validate form
     event.preventDefault();
     this.props.addPropertyHandler(this.state);
     this.setState(this.getInitialFormState());
