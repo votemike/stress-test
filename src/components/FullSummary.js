@@ -67,6 +67,10 @@ const FullSummary = ({properties}) => {
     }).format(amount)
   }
 
+  if (properties.length < 1) {
+    return null;
+  }
+
   return (
     <>
       <h2>Summary</h2>
