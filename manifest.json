@@ -1,20 +1,35 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Stress Test",
+  "name": "Mortgage Stress Test",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "images/logos/32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "images/logos/96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logos/128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logos/196x196.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logos/stress-test.jpg",
+      "type": "image/jpeg",
       "sizes": "512x512"
     }
   ],
