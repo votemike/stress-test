@@ -34,6 +34,7 @@ function App() {
       </div>
       <footer>
         <p>Created by <a href="https://www.votemike.co.uk">Michael Gwynne</a></p>
+        <p>You may also like <a href="https://votemike.github.io/amortisation-calculator/">Amortisation Calculator</a></p>
       </footer>
     </>
   );
