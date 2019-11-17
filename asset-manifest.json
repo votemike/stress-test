@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/stress-test/static/css/main.d9dcbe40.chunk.css",
-    "main.js": "/stress-test/static/js/main.35a92362.chunk.js",
-    "main.js.map": "/stress-test/static/js/main.35a92362.chunk.js.map",
+    "main.css": "/stress-test/static/css/main.080ebee5.chunk.css",
+    "main.js": "/stress-test/static/js/main.ceb77a93.chunk.js",
+    "main.js.map": "/stress-test/static/js/main.ceb77a93.chunk.js.map",
     "runtime-main.js": "/stress-test/static/js/runtime-main.ca316bac.js",
     "runtime-main.js.map": "/stress-test/static/js/runtime-main.ca316bac.js.map",
     "static/js/2.b7d5a164.chunk.js": "/stress-test/static/js/2.b7d5a164.chunk.js",
     "static/js/2.b7d5a164.chunk.js.map": "/stress-test/static/js/2.b7d5a164.chunk.js.map",
     "index.html": "/stress-test/index.html",
-    "precache-manifest.e2e51f4f2548f80b8a07be4f20652477.js": "/stress-test/precache-manifest.e2e51f4f2548f80b8a07be4f20652477.js",
+    "precache-manifest.1fd59e08eca2750bc87ec93977eefda7.js": "/stress-test/precache-manifest.1fd59e08eca2750bc87ec93977eefda7.js",
     "service-worker.js": "/stress-test/service-worker.js",
-    "static/css/main.d9dcbe40.chunk.css.map": "/stress-test/static/css/main.d9dcbe40.chunk.css.map"
+    "static/css/main.080ebee5.chunk.css.map": "/stress-test/static/css/main.080ebee5.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.ca316bac.js",
     "static/js/2.b7d5a164.chunk.js",
-    "static/css/main.d9dcbe40.chunk.css",
-    "static/js/main.35a92362.chunk.js"
+    "static/css/main.080ebee5.chunk.css",
+    "static/js/main.ceb77a93.chunk.js"
   ]
 }
