@@ -30,6 +30,35 @@ body {
     font-family: Arial,Helvetica,sans-serif;
     font-size: 2.5em;
   }
+
+  h2 {
+    display: inline-block;
+  }
+}
+
+.remove {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  background: none;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-weight: inherit;
+  appearance: none;
+
+  &:hover {
+    color: #af5b5e;
+  }
+
+  &:after {
+    content: '×';
+  }
 }
 
 form {

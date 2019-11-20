@@ -20,6 +20,12 @@ function App() {
     setProperties([...properties, {...formState}]);
   };
 
+  const removePropertyHandler = index => {
+    const newProperties = [...properties];
+    newProperties.splice(index, 1);
+    setProperties(newProperties);
+  };
+
   return (
     <>
       <div className="stress-test">
@@ -28,7 +34,7 @@ function App() {
           <p>This stress test is provided as a rough guide only. You should not base any decisions solely on it.</p>
           <p>It is currently a work in progress.</p>
         </header>
-        <PropertySummaries properties={properties}/>
+        <PropertySummaries properties={properties} removePropertyHandler={removePropertyHandler}/>
         <FullSummary properties={properties}/>
         <AddProperty addPropertyHandler={addPropertyHandler}/>
       </div>

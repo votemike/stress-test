@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PropertySummary = (property) => {
+const PropertySummary = ({index, property, removePropertyHandler}) => {
   function getCurrentMonthlyCost(property) {
     if (property.teaserRate) {
       return getMonthlyCost(property, property.teaserRate);
@@ -38,7 +38,7 @@ const PropertySummary = (property) => {
     return +(property.mortgage * ((monthlyInterestRate * pow) / (pow - 1))).toFixed(2);
   }
 
-  const title = <h2>{ property.name }</h2>;
+  const title = <><h2>{ property.name }</h2><button aria-label="Remove Todo" className='remove' onClick={() => removePropertyHandler(index)}></button></>;
   const line1 = [`The mortgage for ${property.name} currently costs around ${format(getCurrentMonthlyCost(property))} each month.`];
   const line2 = [`After mortgage repayments, your current income from the property is around ${format(getCurrentNetIncome(property))} each month.`];
 
