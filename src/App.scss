@@ -70,6 +70,10 @@ form {
         border-left: 5px solid #a94442;
       }
     }
+
+    input[type="submit"] {
+      cursor:pointer;
+    }
   }
 
   .income-label {

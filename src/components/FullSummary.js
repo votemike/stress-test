@@ -30,7 +30,6 @@ const FullSummary = ({properties}) => {
   }
 
   function getCurrentMonthlyCost(property) {
-    console.log(property);
     if (property.teaserRate) {
       return getMonthlyCost(property, property.teaserRate);
     } else {
@@ -60,6 +59,26 @@ const FullSummary = ({properties}) => {
     return +(property.income - getMonthlyCost(property, rate)).toFixed(2);
   }
 
+  function getCurrentNetIncome(property) {
+    return +(property.income - getCurrentMonthlyCost(property)).toFixed(2);
+  }
+
+  function getPropertyCurrentIncome(properties) {
+    let incomeTotal = 0;
+    properties.forEach(function (property) {
+      incomeTotal += getCurrentNetIncome(property);
+    });
+    return incomeTotal;
+  }
+
+  function getPropertyProperIncome(properties) {
+    let incomeTotal = 0;
+    properties.forEach(function (property) {
+      incomeTotal += getNetIncome(property, property.baseRate);
+    });
+    return incomeTotal;
+  }
+
   function format(amount) {
     return new Intl.NumberFormat('en-GB', {
       style: 'currency',
@@ -79,7 +98,7 @@ const FullSummary = ({properties}) => {
         around {format(getPropertyFullTotal(properties))} (<span
         className="text-warning">+{format(getPropertyFullTotal(properties) - getPropertyCurrentTotal(properties))}</span>) once
         any/all teaser rates have expired.<br/>
-        Your monthly net income is around
+        Your monthly net income is around {format(getPropertyCurrentIncome(properties))}. This will change by {format(getPropertyProperIncome(properties) - getPropertyCurrentIncome(properties))} to around {format(getPropertyProperIncome(properties))} once any/all teaser rates have expired.
       </p>
       <p>
         <span>If interest rates were to rise to 10%: (<a href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/" target="_blank" rel="noopener noreferrer">similar to rates around 1980</a>), then the mortgages would total {format(getPropertyTotal(properties, 10))} each month, {format(getPropertyTotal(properties, 10) - getPropertyCurrentTotal(properties))} more that your current repayments. If rates were this high, your monthly income will be nearer to {format(getNetIncomeTotal(properties, 10))}.</span><br/>

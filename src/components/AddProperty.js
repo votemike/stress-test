@@ -27,7 +27,7 @@ class AddProperty extends React.Component {
   }
 
   render() {
-    const monthsLeftInput = this.state.interestOnly ? null : <div className="field"><input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Months left" min="0" required/></div>;
+    const monthsLeftInput = this.state.interestOnly ? null : <div className="field"><input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Length (Months)" min="0" step="6" required/></div>;
     return (
       <React.Fragment>
         <h2>Add a Property</h2>
@@ -44,7 +44,7 @@ class AddProperty extends React.Component {
           </div>
           <div className="row">
             <div className="field">
-              <input name="mortgage" value={this.state.mortgage} onChange={this.handleInputChange} type="number" placeholder="Outstanding mortgage" step="any" min="0" required/>
+              <input name="mortgage" value={this.state.mortgage} onChange={this.handleInputChange} type="number" placeholder="Mortgage" step="any" min="0" required/>
             </div>
             <div className="field">
               <input name="baseRate" value={this.state.baseRate} onChange={this.handleInputChange} type="number" placeholder="Base rate" step="any" required/>

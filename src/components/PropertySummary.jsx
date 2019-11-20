@@ -2,7 +2,6 @@ import React from 'react';
 
 const PropertySummary = (property) => {
   function getCurrentMonthlyCost(property) {
-    console.log(property);
     if (property.teaserRate) {
       return getMonthlyCost(property, property.teaserRate);
     } else {
