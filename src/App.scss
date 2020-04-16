@@ -33,31 +33,49 @@ body {
 
   h2 {
     display: inline-block;
-  }
-}
-
-.remove {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  font-size: 30px;
-  color: #cc9a9a;
-  transition: color 0.2s ease-out;
-  cursor: pointer;
-  padding: 0;
-  border: 0;
-  background: none;
-  vertical-align: baseline;
-  font-family: inherit;
-  font-weight: inherit;
-  appearance: none;
-
-  &:hover {
-    color: #af5b5e;
+    margin-top: 0;
   }
 
-  &:after {
-    content: '×';
+  .toggle-trigger {
+    cursor: pointer;
+  }
+
+  .property {
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 4px;
+    padding: 24px 16px;
+    margin-bottom: 12px;
+
+    .property-key-info {
+      background-color: rgb(245, 245, 245);
+      border-radius: 4px;
+      padding: 8px;
+
+      div:not(:last-child) {
+        margin-bottom: 4px;
+      }
+
+      .property-key-info-label {
+        font-weight: bold;
+      }
+    }
+
+    .remove-property {
+      background: #F44336;
+      border: 0;
+      border-radius: 2px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      height: 36px;
+      letter-spacing: .5px;
+      line-height: 36px;
+      padding: 0 16px;
+
+      &:hover {
+        background: darken(#F44336, 10%);
+      }
+    }
   }
 }
 

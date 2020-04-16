@@ -79,6 +79,14 @@ const FullSummary = ({properties}) => {
     return incomeTotal;
   }
 
+  function getTotalMortgageDebt(properties) {
+    let mortgageTotal = 0;
+    properties.forEach(function (property) {
+      mortgageTotal += parseFloat(property.mortgage);
+    });
+    return mortgageTotal;
+  }
+
   function format(amount) {
     return new Intl.NumberFormat('en-GB', {
       style: 'currency',
@@ -93,6 +101,7 @@ const FullSummary = ({properties}) => {
   return (
     <>
       <h2>Summary</h2>
+      <p>Your total mortgage debt is {format(getTotalMortgageDebt(properties))}.</p>
       <p>
         Your current monthly payments are around {format(getPropertyCurrentTotal(properties))}. This will increase to
         around {format(getPropertyFullTotal(properties))} (<span
