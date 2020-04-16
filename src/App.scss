@@ -36,55 +36,34 @@ body {
     margin-top: 0;
   }
 
-  .toggle-trigger {
+  .collapsable-toggle {
     cursor: pointer;
   }
 
-  .property {
-    border: 1px solid rgb(225, 225, 225);
-    border-radius: 4px;
-    padding: 24px 16px;
-    margin-bottom: 12px;
+  .remove-property {
+    background: #F44336;
+    border: 0;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    height: 36px;
+    letter-spacing: .5px;
+    line-height: 36px;
+    padding: 0 16px;
 
-    .property-key-info {
-      background-color: rgb(245, 245, 245);
-      border-radius: 4px;
-      padding: 8px;
-
-      div:not(:last-child) {
-        margin-bottom: 4px;
-      }
-
-      .property-key-info-label {
-        font-weight: bold;
-      }
-    }
-
-    .remove-property {
-      background: #F44336;
-      border: 0;
-      border-radius: 2px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      height: 36px;
-      letter-spacing: .5px;
-      line-height: 36px;
-      padding: 0 16px;
-
-      &:hover {
-        background: darken(#F44336, 10%);
-      }
+    &:hover {
+      background: darken(#F44336, 10%);
     }
   }
 
-  .summary {
+  .collapsable {
     border: 1px solid rgb(225, 225, 225);
     border-radius: 4px;
     padding: 24px 16px;
     margin-bottom: 12px;
 
-    .summary-key-info {
+    .collapsable-key-info {
       background-color: rgb(245, 245, 245);
       border-radius: 4px;
       padding: 8px;
@@ -93,7 +72,7 @@ body {
         margin-bottom: 4px;
       }
 
-      .summary-key-info-label {
+      .collapsable-key-info-label {
         font-weight: bold;
       }
     }

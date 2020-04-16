@@ -1,13 +1,9 @@
 import React from 'react';
 import { getCurrentMonthlyCost, getCurrentNetIncome, getFullMonthlyCost, getMonthlyCost, getNetIncome } from '../utilities/calculators';
 import { formatCurrency } from '../utilities/formatters';
+import CollapsableWidget from "./CollapsableWidget";
 
 class PropertySummary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { collapsed: true };
-  }
-
   renderBlurb() {
     const line1 = [`The mortgage for ${this.props.property.name} currently costs around ${formatCurrency(getCurrentMonthlyCost(this.props.property))} each month.`];
     const line2 = [`After mortgage repayments, your current income from the property is around ${formatCurrency(getCurrentNetIncome(this.props.property))} each month.`];
@@ -33,14 +29,11 @@ class PropertySummary extends React.Component {
     return <>{para1}{para2}</>;
   }
 
-  render() {
-    let blurb = null;
-    let deleteButton = null;
-    if (!this.state.collapsed) {
-      blurb = this.renderBlurb();
-      deleteButton = <button className='remove-property' onClick={() => this.props.removePropertyHandler(this.props.index)}>Remove Property</button>;
-    }
+  renderDeleteButton() {
+    return <button className='remove-property' onClick={() => this.props.removePropertyHandler(this.props.index)}>Remove Property</button>;
+  }
 
+  render() {
     let mortgageCost = formatCurrency(getCurrentMonthlyCost(this.props.property));
     let profit = formatCurrency(getCurrentNetIncome(this.props.property));
 
@@ -49,17 +42,17 @@ class PropertySummary extends React.Component {
       profit = `${profit} (${formatCurrency(getNetIncome(this.props.property, this.props.property.baseRate))})`;
     }
 
+    const keyInfo = {
+      'Mortgage Cost': `${mortgageCost} per month`,
+      'Pre-Mortgage Profit': `${formatCurrency(this.props.property.income)} per month`,
+      'Post-Mortgage Profit': `${profit} per month`
+    };
+
     return (
-      <div className='property'>
-        <h2 className='toggle-trigger' onClick={() => this.setState(state => ({collapsed: !state.collapsed}))}>{ this.props.property.name }</h2>
-        <div className='property-key-info toggle-trigger' onClick={() => this.setState(state => ({collapsed: !state.collapsed}))}>
-          <div><span className='property-key-info-label'>Mortgage Cost:</span> {mortgageCost} per month</div>
-          <div><span className='property-key-info-label'>Pre-Mortgage Profit:</span> {formatCurrency(this.props.property.income)} per month</div>
-          <div><span className='property-key-info-label'>Post-Mortgage Profit:</span> {profit} per month</div>
-        </div>
-        {blurb}
-        {deleteButton}
-      </div>
+      <CollapsableWidget heading={this.props.property.name} keyInfoItems={keyInfo}>
+        {this.renderBlurb()}
+        {this.renderDeleteButton()}
+      </CollapsableWidget>
     );
   }
 }

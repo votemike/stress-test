@@ -1,13 +1,9 @@
 import React from 'react';
+import CollapsableWidget from './CollapsableWidget';
 import { getCurrentMonthlyCost, getCurrentNetIncome, getFullMonthlyCost, getMonthlyCost, getNetIncome } from '../utilities/calculators';
 import { formatCurrency } from '../utilities/formatters';
 
 class FullSummary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { collapsed: true };
-  }
-
   getPropertyCurrentTotal() {
     let teaserTotal = 0;
     this.props.properties.forEach(property =>  {
@@ -87,11 +83,6 @@ class FullSummary extends React.Component {
       return null;
     }
 
-    let blurb = null;
-    if (!this.state.collapsed) {
-      blurb = this.renderBlurb();
-    }
-
     const properProfit = formatCurrency(this.getPropertyProperIncome());
     let profit = formatCurrency(this.getPropertyCurrentIncome());
 
@@ -99,17 +90,17 @@ class FullSummary extends React.Component {
       profit = `${profit} (${properProfit})`
     }
 
+    const keyInfo = {
+      'Total Mortgage Debt': formatCurrency(this.getTotalMortgageDebt()),
+      'Mortgage Costs': `${formatCurrency(this.getPropertyCurrentTotal())} per month`,
+      'Post-Mortgage Profit': `${profit} per month`
+    };
+
     return (
-      <div className='summary'>
-        <h2 className='toggle-trigger' onClick={() => this.setState(state => ({collapsed: !state.collapsed}))}>Summary</h2>
-        <div className='summary-key-info toggle-trigger' onClick={() => this.setState(state => ({collapsed: !state.collapsed}))}>
-          <div><span className='summary-key-info-label'>Total Mortgage Debt:</span> {formatCurrency(this.getTotalMortgageDebt())}</div>
-          <div><span className='summary-key-info-label'>Mortgage Costs:</span> {formatCurrency(this.getPropertyCurrentTotal())} per month</div>
-          <div><span className='summary-key-info-label'>Post-Mortgage Profit:</span> {profit} per month</div>
-        </div>
-        {blurb}
-      </div>
-    )
+      <CollapsableWidget heading='Summary' keyInfoItems={keyInfo}>
+        {this.renderBlurb()}
+      </CollapsableWidget>
+    );
   }
 }
 
