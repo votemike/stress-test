@@ -64,15 +64,9 @@ class FullSummary extends React.Component {
     return mortgageTotal;
   }
 
-  render() {
-    if (this.props.properties.length < 1) {
-      return null;
-    }
-
+  renderBlurb() {
     return (
       <>
-        <h2>Summary</h2>
-        <p>Your total mortgage debt is {formatCurrency(this.getTotalMortgageDebt())}.</p>
         <p>
           Your current monthly payments are around {formatCurrency(this.getPropertyCurrentTotal())}. This will increase to
           around {formatCurrency(this.getPropertyFullTotal())} (<span
@@ -84,7 +78,37 @@ class FullSummary extends React.Component {
           <span>If interest rates were to rise to 10%: (<a href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/" target="_blank" rel="noopener noreferrer">similar to rates around 1980</a>), then the mortgages would total {formatCurrency(this.getPropertyTotal(10))} each month, {formatCurrency(this.getPropertyTotal(10) - this.getPropertyCurrentTotal())} more that your current repayments. If rates were this high, your monthly income will be nearer to {formatCurrency(this.getNetIncomeTotal(10))}.</span><br/>
           <span>If interest rates were to rise to 15%: (<a href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/" target="_blank" rel="noopener noreferrer">similar to rates around 1995</a>), then the mortgages would total {formatCurrency(this.getPropertyTotal(15))} each month, {formatCurrency(this.getPropertyTotal(15) - this.getPropertyCurrentTotal())} more that your current repayments. If rates were this high, your monthly income will be nearer to {formatCurrency(this.getNetIncomeTotal(15))}.</span>
         </p>
-      </>
+        </>
+    );
+  }
+
+  render() {
+    if (this.props.properties.length < 1) {
+      return null;
+    }
+
+    let blurb = null;
+    if (!this.state.collapsed) {
+      blurb = this.renderBlurb();
+    }
+
+    const properProfit = formatCurrency(this.getPropertyProperIncome());
+    let profit = formatCurrency(this.getPropertyCurrentIncome());
+
+    if (profit !== properProfit) {
+      profit = `${profit} (${properProfit})`
+    }
+
+    return (
+      <div className='summary'>
+        <h2 className='toggle-trigger' onClick={() => this.setState(state => ({collapsed: !state.collapsed}))}>Summary</h2>
+        <div className='summary-key-info toggle-trigger' onClick={() => this.setState(state => ({collapsed: !state.collapsed}))}>
+          <div><span className='summary-key-info-label'>Total Mortgage Debt:</span> {formatCurrency(this.getTotalMortgageDebt())}</div>
+          <div><span className='summary-key-info-label'>Mortgage Costs:</span> {formatCurrency(this.getPropertyCurrentTotal())} per month</div>
+          <div><span className='summary-key-info-label'>Post-Mortgage Profit:</span> {profit} per month</div>
+        </div>
+        {blurb}
+      </div>
     )
   }
 }
