@@ -31,6 +31,7 @@ function App() {
       <div className="stress-test">
         <header>
           <h1 className="title is-1">Mortgage Stress Test</h1>
+          <p>What would happen if interest and mortgage rates went up?<br/>What if you couldn't remortgage once your introductory rate ran out?</p>
           <p>This stress test is provided as a rough guide only. You should not base any decisions solely on it.</p>
         </header>
         <PropertySummaries properties={properties} removePropertyHandler={removePropertyHandler}/>
