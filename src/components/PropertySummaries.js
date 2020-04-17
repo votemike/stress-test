@@ -4,7 +4,7 @@ import PropertySummary from "./PropertySummary";
 const PropertySummaries = ({properties, removePropertyHandler}) => (
   <div>
     {properties.map((property, index) => (
-      <PropertySummary key={index} index={index} property={property} removePropertyHandler={removePropertyHandler}/>
+      <PropertySummary key={property.name} index={index} property={property} removePropertyHandler={removePropertyHandler}/>
     ))}
   </div>
 );
