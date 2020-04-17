@@ -27,44 +27,103 @@ class AddProperty extends React.Component {
   }
 
   render() {
-    const monthsLeftInput = this.state.interestOnly ? null : <div className="field"><input name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="Length (Months)" min="0" step="1" required/></div>;
     return (
       <React.Fragment>
-        <h2>Add a Property</h2>
+        <h2 className="title is-3">Add a Property</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="field">
-              <input name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Property Name" required/>
+          <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">Property Name</label>
             </div>
-            <div className="field">
-              <label htmlFor="interestOnly">Interest only
-                <input name="interestOnly" checked={this.state.interestOnly} onChange={this.handleInputChange} type="checkbox"/>
-              </label>
-            </div>
-          </div>
-          <div className="row">
-            <div className="field">
-              <input name="mortgage" value={this.state.mortgage} onChange={this.handleInputChange} type="number" placeholder="Mortgage" step="any" min="0" required/>
-            </div>
-            <div className="field">
-              <input name="baseRate" value={this.state.baseRate} onChange={this.handleInputChange} type="number" placeholder="Base rate" step="any" required/>
-            </div>
-            {monthsLeftInput}
-            <div className="field">
-              <input name="teaserRate" value={this.state.teaserRate} onChange={this.handleInputChange} type="number" placeholder="Teaser rate" step="any"/>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="10 Downing Street" required/>
+                </div>
+                <p className="help">
+                  Give this property a label
+                </p>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="field">
-              <input name="income" value={this.state.income} onChange={this.handleInputChange} placeholder="Income" id="income" required/>
+          <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">Mortgage amount</label>
             </div>
-            <div className="income-label">
-              <label htmlFor="income">(Monthly Net Income after fees, maintenance and taxes but before mortgage payments)</label>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="mortgage" value={this.state.mortgage} onChange={this.handleInputChange} type="number" placeholder="300000" step="any" min="0" required/>
+                </div>
+                <p className="help">
+                  The outstanding amount of the loan
+                </p>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <label className="checkbox">
+                    <input name="interestOnly" checked={this.state.interestOnly} onChange={this.handleInputChange} type="checkbox"/> Interest only
+                  </label>
+                </div>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="monthsLeft" value={this.state.monthsLeft} onChange={this.handleInputChange} type="number" placeholder="300" step="1" min="0" disabled={this.state.interestOnly} required={!this.state.interestOnly}/>
+                </div>
+                <p className="help">
+                  Months left on the mortgage
+                </p>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="field">
-              <input type="submit" value="Add Property"/>
+          <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">Rate</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="baseRate" value={this.state.baseRate} onChange={this.handleInputChange} type="number" placeholder="4.95" step="any" required/>
+                </div>
+                <p className="help">
+                  The interest rate of the loan (ignoring any teaser rate)
+                </p>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="teaserRate" value={this.state.teaserRate} onChange={this.handleInputChange} type="number" placeholder="2.19" step="any"/>
+                </div>
+                <p className="help">
+                  Any introductory/teaser rate the loan may have
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">Income</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="income" value={this.state.income} onChange={this.handleInputChange} type="number" step="any" placeholder="810" id="income" required/>
+                </div>
+                <p className="help">
+                  Monthly Net Income after fees, maintenance and taxes but before mortgage payments
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="field is-horizontal">
+            <div className="field-label"/>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <button type="submit" className="button is-primary">
+                    Add Property
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </form>

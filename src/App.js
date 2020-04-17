@@ -30,17 +30,18 @@ function App() {
     <>
       <div className="stress-test">
         <header>
-          <h1>Mortgage Stress Test</h1>
+          <h1 className="title is-1">Mortgage Stress Test</h1>
           <p>This stress test is provided as a rough guide only. You should not base any decisions solely on it.</p>
-          <p>It is currently a work in progress.</p>
         </header>
         <PropertySummaries properties={properties} removePropertyHandler={removePropertyHandler}/>
         <FullSummary properties={properties}/>
         <AddProperty addPropertyHandler={addPropertyHandler}/>
       </div>
-      <footer>
-        <p>Created by <a href="https://votemike.co.uk">Michael Gwynne</a></p>
-        <p>You may also like <a href="https://votemike.github.io/amortisation-calculator/">Amortisation Calculator</a></p>
+      <footer className="footer">
+        <div className="content has-text-centered">
+          <p>Created by <a href="https://votemike.co.uk">Michael Gwynne</a></p>
+          <p>You may also like <a href="https://votemike.github.io/amortisation-calculator/">Amortisation Calculator</a></p>
+        </div>
       </footer>
     </>
   );
