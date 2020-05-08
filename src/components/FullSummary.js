@@ -1,13 +1,13 @@
 import React from 'react';
 import CollapsableWidget from './CollapsableWidget';
-import { getCurrentMonthlyCost, getCurrentNetIncome, getFullMonthlyCost, getMonthlyCost, getNetIncome } from '../utilities/calculators';
+import { getMonthlyCost, getNetIncome } from '../utilities/calculators';
 import { formatCurrency } from '../utilities/formatters';
 
 class FullSummary extends React.Component {
   getPropertyCurrentTotal() {
     let teaserTotal = 0;
     this.props.properties.forEach(property =>  {
-      teaserTotal += getCurrentMonthlyCost(property);
+      teaserTotal += property.finances[0].monthlyTeaserCostOfFinance;
     });
     return teaserTotal;
   }
@@ -15,7 +15,7 @@ class FullSummary extends React.Component {
   getPropertyFullTotal() {
     let total = 0;
     this.props.properties.forEach(property => {
-      total += getFullMonthlyCost(property);
+      total += property.finances[0].monthlyCostOfFinance;
     });
     return total;
   }
@@ -23,7 +23,7 @@ class FullSummary extends React.Component {
   getPropertyTotal(rate) {
     let total = 0;
     this.props.properties.forEach(property => {
-      total += getMonthlyCost(property, rate);
+      total += parseFloat(getMonthlyCost(property, rate));
     });
     return total;
   }
@@ -39,7 +39,7 @@ class FullSummary extends React.Component {
   getPropertyCurrentIncome() {
     let incomeTotal = 0;
     this.props.properties.forEach(property => {
-      incomeTotal += getCurrentNetIncome(property);
+      incomeTotal += property.calculateMonthlyProfit(true);
     });
     return incomeTotal;
   }
@@ -47,17 +47,13 @@ class FullSummary extends React.Component {
   getPropertyProperIncome() {
     let incomeTotal = 0;
     this.props.properties.forEach(property => {
-      incomeTotal += getNetIncome(property, property.baseRate);
+      incomeTotal += property.calculateMonthlyProfit();
     });
     return incomeTotal;
   }
 
   getTotalMortgageDebt() {
-    let mortgageTotal = 0;
-    this.props.properties.forEach(property => {
-      mortgageTotal += parseFloat(property.mortgage);
-    });
-    return mortgageTotal;
+    return this.props.properties.reduce((total, property) => property.finances[0].amount + total, 0);
   }
 
   renderBlurb() {
@@ -90,9 +86,16 @@ class FullSummary extends React.Component {
       profit = `${profit} (${properProfit})`
     }
 
+    const properMortgageCost = formatCurrency(this.getPropertyFullTotal());
+    let mortgageCost = formatCurrency(this.getPropertyCurrentTotal());
+
+    if (mortgageCost !== properMortgageCost) {
+      mortgageCost = `${mortgageCost} (${properMortgageCost})`
+    }
+
     const keyInfo = {
       'Total Mortgage Debt': formatCurrency(this.getTotalMortgageDebt()),
-      'Mortgage Costs': `${formatCurrency(this.getPropertyCurrentTotal())} per month`,
+      'Mortgage Costs': `${mortgageCost} per month`,
       'Post-Mortgage Profit': `${profit} per month`
     };
 

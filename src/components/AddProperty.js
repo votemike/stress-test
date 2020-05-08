@@ -9,7 +9,7 @@ class AddProperty extends React.Component {
   }
 
   getInitialFormState() {
-    return {name: '', interestOnly: false, mortgage: '', baseRate: '', monthsLeft: '', teaserRate: '', income: ''};
+    return {name: '', interestOnly: false, mortgage: '', baseRate: '', monthsLeft: '', teaserRate: '', rent: '', fee: '', expenses: ''};
   }
 
   handleInputChange(event) {
@@ -86,7 +86,7 @@ class AddProperty extends React.Component {
                   <input className="input" name="baseRate" value={this.state.baseRate} onChange={this.handleInputChange} type="number" placeholder="4.95" step="any" required/>
                 </div>
                 <p className="help">
-                  The interest rate of the loan (ignoring any teaser rate)
+                  The interest rate of the loan (ignoring any teaser rate) %
                 </p>
               </div>
               <div className="field">
@@ -94,22 +94,45 @@ class AddProperty extends React.Component {
                   <input className="input" name="teaserRate" value={this.state.teaserRate} onChange={this.handleInputChange} type="number" placeholder="2.19" step="any"/>
                 </div>
                 <p className="help">
-                  Any introductory/teaser rate the loan may have
+                  Any introductory/teaser rate the loan may have %
                 </p>
               </div>
             </div>
           </div>
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Income</label>
+              <label className="label">Rent</label>
             </div>
             <div className="field-body">
               <div className="field">
                 <div className="control">
-                  <input className="input" name="income" value={this.state.income} onChange={this.handleInputChange} type="number" step="any" placeholder="810" id="income" required/>
+                  <input className="input" name="rent" value={this.state.rent} onChange={this.handleInputChange} type="number" step="any" placeholder="1000" id="rent" required/>
                 </div>
                 <p className="help">
-                  Monthly Net Income after fees, maintenance and taxes but before mortgage payments
+                  Monthly rent
+                </p>
+              </div>
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="fee" value={this.state.fee} onChange={this.handleInputChange} type="number" step="any" placeholder="12" id="fee" required/>
+                </div>
+                <p className="help">
+                  Letting fee %
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">Expenses</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input" name="expenses" value={this.state.expenses} onChange={this.handleInputChange} type="number" step="any" placeholder="110" id="expenses" required/>
+                </div>
+                <p className="help">
+                  Monthly expenses such as maintenance and service charge
                 </p>
               </div>
             </div>

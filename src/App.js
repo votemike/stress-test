@@ -3,10 +3,44 @@ import './App.scss';
 import PropertySummaries from "./components/PropertySummaries";
 import FullSummary from "./components/FullSummary";
 import AddProperty from "./components/AddProperty";
+import {Finance, Payment, Property, Rental} from "@votemike/property";
 
 function App() {
+  const updatePropertySchema = property => {
+    return {
+      name: property.name,
+      finances: [
+        {
+          amount: parseFloat(property.mortgage),
+          repayment: !property.interestOnly,
+          length: parseFloat(property.monthsLeft) / 12,
+          rate: parseFloat(property.baseRate),
+          teaserRate: parseFloat(property.teaserRate),
+          fees: []
+        }
+      ],
+      rentals: [
+        {
+          lettingFee: 0,
+          monthlyRent: property.income
+        }
+      ],
+      payments: []
+    };
+  };
+
   const useStateWithLocalStorage = (storageKey, defaultValue) => {
-    const [name, setter] = React.useState(JSON.parse(localStorage.getItem(storageKey)) || defaultValue);
+    let initialProperties = defaultValue;
+    if (localStorage.getItem(storageKey)) {
+      initialProperties = JSON.parse(localStorage.getItem(storageKey)).map((property) => {
+        if (property.interestOnly !== undefined) {
+          alert(`${property.name} has been updated. Please double check the details are still correct`);
+          property = updatePropertySchema(property);
+        }
+        return Property.fromJson(property);
+      });
+    }
+    const [name, setter] = React.useState(initialProperties);
 
     React.useEffect(() => {
       localStorage.setItem(storageKey, JSON.stringify(name));
@@ -17,7 +51,12 @@ function App() {
   const [properties, setProperties] = useStateWithLocalStorage('properties', []);
 
   const addPropertyHandler = formState => {
-    setProperties([...properties, {...formState}]);
+    const finances = [new Finance(parseFloat(formState.mortgage), !formState.interestOnly, parseInt(formState.monthsLeft) / 12, parseFloat(formState.baseRate), [], parseFloat(formState.teaserRate))];
+    const payments = [new Payment(parseFloat(formState.expenses), 'monthly')];
+    const rentals = [new Rental(parseFloat(formState.rent), parseFloat(formState.fee))];
+
+    const property = new Property(formState.name, finances, payments, rentals);
+    setProperties([...properties, property]);
   };
 
   const removePropertyHandler = index => {
