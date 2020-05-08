@@ -3,7 +3,11 @@ const getMonthlyCost = (property, rate) => {
 };
 
 const getNetIncome = (property, rate) => {
-  return +(property.calculateMonthlyIncome() - getMonthlyCost(property, rate) - property.payments[0].monthlyCost).toFixed(2);
+  const income = property.calculateMonthlyIncome() - getMonthlyCost(property, rate);
+  if (property.payments[0]) { // Old schemas didn't have payments
+    return +(income - property.payments[0].monthlyCost).toFixed(2);
+  }
+  return +(income).toFixed(2);
 };
 
 export {
