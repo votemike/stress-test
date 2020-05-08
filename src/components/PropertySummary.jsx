@@ -1,6 +1,12 @@
 import React from 'react';
-import { getCurrentMonthlyCost, getCurrentNetIncome, getFullMonthlyCost, getMonthlyCost, getNetIncome } from '../utilities/calculators';
-import { formatCurrency } from '../utilities/formatters';
+import {
+  getCurrentMonthlyCost,
+  getCurrentNetIncome,
+  getFullMonthlyCost,
+  getMonthlyCost,
+  getNetIncome
+} from '../utilities/calculators';
+import {formatCurrency} from '../utilities/formatters';
 import CollapsableWidget from "./CollapsableWidget";
 
 class PropertySummary extends React.Component {
@@ -18,19 +24,29 @@ class PropertySummary extends React.Component {
       return para1;
     }
 
-    const span1 = <span>If interest rates were to rise to 10% (<a href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/" target="_blank" rel="noopener noreferrer">similar to rates around 1995</a>), then the mortgage would cost {formatCurrency(getMonthlyCost(this.props.property, 10))} each month, {formatCurrency(getMonthlyCost(this.props.property, 10) - getCurrentMonthlyCost(this.props.property))} more that your current repayments. If rates were this high, your monthly income will be nearer to {formatCurrency(getNetIncome(this.props.property, 10))}.</span>;
-    let span2 = null;
+    let span1 = null;
     if (this.props.property.baseRate < 10) {
-      span2 = <span>If interest rates were to rise to 15% (<a href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/" target="_blank" rel="noopener noreferrer">similar to rates around 1980</a>), then the mortgage would cost {formatCurrency(getMonthlyCost(this.props.property, 15))} each month, {formatCurrency(getMonthlyCost(this.props.property, 15) - getCurrentMonthlyCost(this.props.property))} more that your current repayments. If rates were this high, your monthly income will be nearer to {formatCurrency(getNetIncome(this.props.property, 15))}.</span>;
+      span1 = <>
+        <span>If interest rates were to rise to 10% (<a
+          href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/"
+          target="_blank"
+          rel="noopener noreferrer">similar to rates around 1995</a>), then the mortgage would cost {formatCurrency(getMonthlyCost(this.props.property, 10))} each month, {formatCurrency(getMonthlyCost(this.props.property, 10) - getCurrentMonthlyCost(this.props.property))} more that your current repayments. If rates were this high, your monthly income will be nearer to {formatCurrency(getNetIncome(this.props.property, 10))}.</span>
+        <br/>
+      </>;
     }
+    const span2 = <span>If interest rates were to rise to 15% (<a
+      href="https://www.purecommercialfinance.co.uk/news/a-brief-history-of-average-mortgage-interest-rates/"
+      target="_blank"
+      rel="noopener noreferrer">similar to rates around 1980</a>), then the mortgage would cost {formatCurrency(getMonthlyCost(this.props.property, 15))} each month, {formatCurrency(getMonthlyCost(this.props.property, 15) - getCurrentMonthlyCost(this.props.property))} more that your current repayments. If rates were this high, your monthly income will be nearer to {formatCurrency(getNetIncome(this.props.property, 15))}.</span>;
 
-    const para2 = <p className='summary-line'>{span1}{span2 && (<><br/>{span2}</>)}</p>;
+    const para2 = <p className='summary-line'>{span1}{span2}</p>;
 
     return <>{para1}{para2}</>;
   }
 
   renderDeleteButton() {
-    return <button className='remove-property' onClick={() => this.props.removePropertyHandler(this.props.index)}>Remove Property</button>;
+    return <button className='remove-property' onClick={() => this.props.removePropertyHandler(this.props.index)}>Remove
+      Property</button>;
   }
 
   render() {
