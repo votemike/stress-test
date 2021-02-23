@@ -8,7 +8,7 @@
     "bulma": "^0.8.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "predeploy": "yarn run build",
